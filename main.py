@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2023/4/19 11:07
 # @Author  : Mandy
-from common.read_excel import Excel
+from common.excel import Excel
 
 if __name__ == '__main__':
     ex = Excel()
