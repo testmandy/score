@@ -9,37 +9,44 @@ import xlsxwriter as xw
 
 
 class Excel(object):
-    def __init__(self, filename):
-        # filename = conftest.data_dir + '/source_data.xls'
-        self.data = xlrd.open_workbook(filename)  # 文件名以及路径，如果路径或者文件名有中文给前面加一个 r
-        self.table = self.data.sheets()[0]  # 通过索引顺序获取
+    def __init__(self, fileName, index=0):
+        self.data = xlrd.open_workbook(fileName)  # 文件名以及路径，如果路径或者文件名有中文给前面加一个 r
+        self.index = index
+
+    def get_nsheets(self):
+        nsheets = self.data.nsheets
+        return nsheets
+
+    def get_sheet(self):
+        sheet = self.data.sheets()[self.index]  # 通过索引顺序获取
+        return sheet
 
     def get_nrows(self):
-        nrows = self.table.nrows
+        nrows = self.get_sheet().nrows
         # print('当前表共有 %d 行' % nrows)
         return nrows
 
     def get_ncols(self):
-        ncols = self.table.ncols
+        ncols = self.get_sheet().ncols
         print(ncols)
         return ncols
 
     def get_row(self, rowx):
-        row_value = self.table.row_values(rowx)
+        row_value = self.get_sheet().row_values(rowx)
         print(row_value)
 
     def get_col(self, colx):
-        col_value = self.table.col_values(colx)
+        col_value = self.get_sheet().col_values(colx)
         print(col_value)
 
     def get_cell(self, rowx, colx):
-        cell_value = self.table.cell_value(rowx, colx)
+        cell_value = self.get_sheet().cell_value(rowx, colx)
         return cell_value
 
-    def get_rows_value(self):
-        for i in range(self.get_nrows()):
+    def get_rows_value(self, index):
+        for i in range(self.get_nrows(index)):
             for j in range(self.get_ncols()):
-                self.get_cell(i, j)
+                self.get_cell(i, j, index)
 
     def xw_toExcel(self, data_list, write_filename):  # xlsxwriter库储存数据到excel
         workbook = xw.Workbook(write_filename)  # 创建工作簿
@@ -56,3 +63,9 @@ class Excel(object):
                 i += 1
         workbook.close()
 
+
+if __name__ == '__main__':
+    filename = conftest.data_dir + '/stats_data.xls'
+    ex = Excel(filename, index=0)
+    tables = ex.get_nsheets()
+    print(tables)

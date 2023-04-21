@@ -74,11 +74,4 @@ class SourceData(object):
             score = 0
         return int(score)
 
-# if __name__ == '__main__':
-#     data = Data()
-#     print(data.evaluator_name(1))
-#     print(data.score(1))
-#     print(data.evaluated_name(1))
-
-
 

@@ -6,9 +6,9 @@ from common.excel import Excel
 
 
 class StatsData(object):
-    def __init__(self):
+    def __init__(self, index):
         filename = conftest.data_dir + '/stats_data.xls'
-        self.read = Excel(filename)
+        self.read = Excel(filename, index)
 
     def qustion_id(self, rowx):
         data = self.read.get_cell(rowx, 0)

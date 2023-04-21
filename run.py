@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2022/5/10 16:05
+# @Time    : 2023/4/18 16:05
 # @Author  : Mandy
 import time
 
-from common.excel import Excel
-from common.source_write import write_stats, evaluate_count
+from common.source_write import write_stats
 from common.stats_write import write_results
 
 name_list = ["cherry", "Gary", "陈培挺", "崔莹新", "傅萌", "金鼎强", "黎焕", "李晨阳", "刘道熠", "柳阳", "马相连", "蒙仕彬",
@@ -12,8 +11,8 @@ name_list = ["cherry", "Gary", "陈培挺", "崔莹新", "傅萌", "金鼎强", 
 
 
 if __name__ == '__main__':
-    # my_qn_list = [29, 32, 34, 35, 36, 37]
-    my_qn_list = [35]
-    write_stats(my_qn_list, name_list)
-    # time.sleep(10)
-    write_results("午休环评", name_list)
+    question_name = "午休环评"
+    write_stats(question_name, name_list)
+    time.sleep(10)
+    write_results(question_name, name_list)
+
