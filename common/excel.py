@@ -43,10 +43,10 @@ class Excel(object):
         cell_value = self.get_sheet().cell_value(rowx, colx)
         return cell_value
 
-    def get_rows_value(self, index):
-        for i in range(self.get_nrows(index)):
+    def get_rows_value(self):
+        for i in range(self.get_nrows()):
             for j in range(self.get_ncols()):
-                self.get_cell(i, j, index)
+                self.get_cell(i, j)
 
     def xw_toExcel(self, data_list, write_filename):  # xlsxwriter库储存数据到excel
         workbook = xw.Workbook(write_filename)  # 创建工作簿
